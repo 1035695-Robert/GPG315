@@ -19,6 +19,5 @@ public class Nodes : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawSphere(transform.position, 0.5f);
-
     }
 }

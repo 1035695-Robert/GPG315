@@ -1,23 +1,39 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
+[Serializable]
+public class BoundaryPoints
+{
+    [HideInInspector] public string name;
+    public Vector3 points;
+    public GameObject node;
+    
+    
+}
 public class Boundary : MonoBehaviour
 {
     public float height;
     public float depth;
 
-    public Color nodeColour;
-    public Color colliderColour;
-
+    public Color nodeColour =  Color.red;
+    public Color lineColour = Color.white;
+    public Color colliderColour  = Color.blue;
+    
+ 
     public bool isVisible;
     public bool isClosedLoop;
 
-    public List<GameObject> nodes;
-   
+    public List<BoundaryPoints> boundaryPoints = new();
+    public List<Vector3> points = new();
+    public float progress;
+    public int waypoint;
+    
+
     public void UpdateDimension()
     {
         Debug.Log(height);
-   
     }
 
     public void UpdateColour()
@@ -40,14 +56,14 @@ public class Boundary : MonoBehaviour
         //deletes all node scripts
 
     }
-    
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = colliderColour;
-    //    for(int i = 0; i < nodes.Count; i++)
-    //    {
-    //        Gizmos.DrawLine(nodes[i].transform.position, nodes[i + 1].transform.position);
-    //    }
-    //}
+    public void AddPoints(string namePoint, Vector3 point )
+    {
+        BoundaryPoints newPoint = new();
+        newPoint.name = namePoint;
+        newPoint.points = point;
+        boundaryPoints.Add(newPoint);
+    }
+
+    
 }
